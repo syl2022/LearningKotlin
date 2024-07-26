@@ -1,15 +1,12 @@
 package no.demo.learnkotlin.services
 
 import no.demo.learnkotlin.model.User
-import no.demo.learnkotlin.repository.UserRepository
 import org.springframework.stereotype.Service
 
 @Service
-class AuthService(
-    private val userRepository: UserRepository
-) {
+class AuthService {
     fun authenticateFirstTimeUser(user: User): Boolean {
-        val user = userRepository.findUserInAuth0Directory(user.username, user.password)
+        val user = findUserInAuth0Directory(user.username, user.password)
 
         // TODO: more steps of validating the user details(address/ID etc) will be added later
 
@@ -17,7 +14,11 @@ class AuthService(
     }
 
     fun authenticateUser(username: String, password: String): Boolean {
-        val user = userRepository.findUserInAuth0Directory(username, password)
+        val user = findUserInAuth0Directory(username, password)
         return user != null
     }
+
+    fun findUserInAuth0Directory(username: String, password: String): User? {
+        return User()
+    }//check with auth0
 }

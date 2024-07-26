@@ -12,7 +12,7 @@ class UserService(
 ) {
     fun register(request: RegistrationRequest): User? {
         if(authService.authenticateFirstTimeUser(request.user)) {
-            val user=userRepository.registerUser(request.userDetails)
+            val user=userRepository.save(request.userDetails)
             if(user!=null) return user
         }
         return null

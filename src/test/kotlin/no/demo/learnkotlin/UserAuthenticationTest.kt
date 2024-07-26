@@ -6,7 +6,7 @@ import no.demo.learnkotlin.services.AuthService
 import no.demo.learnkotlin.services.UserService
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito.`when`
+import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
@@ -18,10 +18,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 
 @WebMvcTest(AuthController::class)
-class UserAuthenticationTest {
-
-    @Autowired
-    private lateinit var mockMvc: MockMvc
+class UserAuthenticationTest(@Autowired val mockMvc: MockMvc) {
 
     @MockBean
     private lateinit var authService: AuthService
@@ -37,8 +34,8 @@ class UserAuthenticationTest {
     }
 
     @Test
-    fun `test login success`() {
-        `when`(authService.authenticateUser(user.username, user.password)).thenReturn(true)
+    fun testLoginSuccess() {
+        Mockito.`when`(authService.authenticateUser(user.username, user.password)).thenReturn(true)
 
         val requestBody = """
             {
@@ -57,8 +54,8 @@ class UserAuthenticationTest {
     }
 
     @Test
-    fun `test login failure`() {
-        `when`(authService.authenticateUser(user.username, user.password)).thenReturn(false)
+    fun testLoginFailure() {
+        Mockito.`when`(authService.authenticateUser(user.username, user.password)).thenReturn(false)
 
         val requestBody = """
             {
