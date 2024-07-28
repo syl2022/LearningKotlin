@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface UserRepository : CrudRepository<User, Long> {
-    fun save(userDetails: UserDetails): User? // save to database
+    fun save(user: UserDetails): User? // save to database
 }
