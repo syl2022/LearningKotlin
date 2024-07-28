@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 env:
-  host: ${{host}}
+  host: ${{secrets.host}}
   
 jobs:
   build-test:
