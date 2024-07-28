@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 env:
-  mail_host: ${{secrets.mail_host}}
+  mail_host: test
   mail_secrets: ${{secrets.mail_secrets}}
   mail_username: ${{secrets.mail_username}}
   
