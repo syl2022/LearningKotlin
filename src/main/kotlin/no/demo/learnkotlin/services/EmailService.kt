@@ -63,7 +63,7 @@ class EmailService(private var session: Session?, private var transport: Transpo
             println("Authentication failed: ${e.message}")
             return false
         } catch (e: MessagingException) {
-            println("Messaging exception: ${e.message}")
+            println("Messaging exception: ${e.message} + ${organisationEmail}")
             return false
         } catch (e: Exception) {
             println("Unexpected exception: ${e.printStackTrace()}")
