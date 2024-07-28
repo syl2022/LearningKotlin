@@ -3,7 +3,7 @@ package no.demo.learnkotlin.helper
 import java.io.UnsupportedEncodingException
 import java.util.*
 
-private const val CONFIG = "config.properties"
+private const val CONFIG = "application.properties"
 
 object PropertiesReader {
     private val properties = Properties()
