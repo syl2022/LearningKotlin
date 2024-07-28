@@ -3,14 +3,15 @@ package no.demo.learnkotlin
 import jakarta.mail.*
 import jakarta.mail.internet.InternetAddress
 import jakarta.mail.internet.MimeMessage
+import no.demo.learnkotlin.helper.PropertiesReader
 import no.demo.learnkotlin.services.EmailService
-import org.junit.jupiter.api.Assertions.*
+import org.junit.Assert.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.mockito.ArgumentCaptor
 import org.mockito.Mockito.*
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import java.util.*
@@ -24,8 +25,7 @@ class EmailServiceTest {
     @MockBean
     private lateinit var emailService: EmailService
 
-    @Value("\${mail_host}")
-    val organisationEmail = ""
+    val organisationEmail = PropertiesReader.getProperty("mail_host")
     val password = "dummyPass"
     val customerEmail = "customer@gmail.com"
 

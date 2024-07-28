@@ -3,14 +3,15 @@ package no.demo.learnkotlin.services
 import jakarta.mail.*
 import jakarta.mail.internet.InternetAddress
 import jakarta.mail.internet.MimeMessage
+import no.demo.learnkotlin.helper.PropertiesReader
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
 class EmailService(private var session: Session?, private var transport: Transport?) {
-    @Value("\${mail_host}")
-    val organisationEmail = ""
+
+    var organisationEmail = PropertiesReader.getProperty("mail_host")
 
     @Value("\${mail_secrets}")
     val password = ""
