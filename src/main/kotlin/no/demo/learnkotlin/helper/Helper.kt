@@ -25,8 +25,11 @@ object Helper {
 
     @Throws(UnsupportedEncodingException::class)
     fun encodeString(value: String): String {
-        val stringAsByteArray = value.toByteArray()
-        val utf8String = String(stringAsByteArray, Charsets.UTF_8)
-        return utf8String
+        return try {
+            val bytes = value.toByteArray(Charsets.UTF_8)
+            Base64.getEncoder().encodeToString(bytes)
+        } catch (e: UnsupportedEncodingException) {
+            throw UnsupportedEncodingException("UTF-8 encoding is not supported")
+        }
     }
 }

@@ -4,7 +4,6 @@ import jakarta.mail.*
 import jakarta.mail.internet.InternetAddress
 import jakarta.mail.internet.MimeMessage
 import no.demo.learnkotlin.helper.PropertiesReader
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -12,9 +11,7 @@ import java.util.*
 class EmailService(private var session: Session?, private var transport: Transport?) {
 
     val organisationEmail = PropertiesReader.getProperty("mail_host")
-
     val password = PropertiesReader.getProperty("mail_secrets")
-
     val username = PropertiesReader.getProperty("mail_username")
 
     fun sendOTPmail(email: String, name: String, otp: String): Boolean {
@@ -25,6 +22,9 @@ class EmailService(private var session: Session?, private var transport: Transpo
             For security reasons, you're required to use the following One Time Password to login:
             ${otp}
             Note: this OTP is set to expire in 5 minutes.
+            
+            Thanks
+            Learn Kotlin Org
         """.trimIndent()
 
         try {
@@ -43,7 +43,6 @@ class EmailService(private var session: Session?, private var transport: Transpo
                 put("mail.smtp.ssl.trust", "smtp.gmail.com")
             }
             if (session == null) {
-                println('s')
                 session = Session.getInstance(props, object : Authenticator() {
                     override fun getPasswordAuthentication(): PasswordAuthentication {
                         return PasswordAuthentication(organisationEmail, password)
@@ -51,7 +50,6 @@ class EmailService(private var session: Session?, private var transport: Transpo
                 })
             }
             if (transport == null) {
-                println('t')
                 transport = session?.getTransport("smtps")
                 transport?.connect("smtp.gmail.com", username, password)
             }
