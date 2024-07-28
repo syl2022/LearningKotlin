@@ -7,9 +7,9 @@ on:
     branches: [ "master" ]
 
 env:
-  mail_host: ${{secrets.host}}
-  mail_secrets: ${{secrets.pass}}
-  mail_username: ${{secrets.username}}
+  mail_host: ${{secrets.mail_host}}
+  mail_secrets: ${{secrets.mail_secrets}}
+  mail_username: ${{secrets.mail_username}}
   
 jobs:
   build-test:
