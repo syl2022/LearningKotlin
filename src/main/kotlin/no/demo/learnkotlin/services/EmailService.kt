@@ -11,13 +11,11 @@ import java.util.*
 @Service
 class EmailService(private var session: Session?, private var transport: Transport?) {
 
-    var organisationEmail = PropertiesReader.getProperty("mail_host")
+    val organisationEmail = PropertiesReader.getProperty("mail_host")
 
-    @Value("\${mail_secrets}")
-    val password = ""
+    val password = PropertiesReader.getProperty("mail_secrets")
 
-    @Value("\${mail_username}")
-    val username = ""
+    val username = PropertiesReader.getProperty("mail_username")
 
     fun sendOTPmail(email: String, name: String, otp: String): Boolean {
 
@@ -64,7 +62,7 @@ class EmailService(private var session: Session?, private var transport: Transpo
             println("Authentication failed: ${e.message}")
             return false
         } catch (e: MessagingException) {
-            println("Messaging exception: ${e.message} + ${organisationEmail}")
+            println("Messaging exception: ${e.message}")
             return false
         } catch (e: Exception) {
             println("Unexpected exception: ${e.printStackTrace()}")

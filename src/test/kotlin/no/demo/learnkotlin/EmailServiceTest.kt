@@ -51,7 +51,7 @@ class EmailServiceTest {
     @Test
     fun `test email is created with correct details`() {
         val otp = "123456"
-
+        println(organisationEmail);
         emailService.sendOTPmail(customerEmail, "kotlinCustomer", otp)
 
         val messageCaptor = ArgumentCaptor.forClass(MimeMessage::class.java)
