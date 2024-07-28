@@ -24,7 +24,7 @@ class EmailServiceTest {
     @MockBean
     private lateinit var emailService: EmailService
 
-    @Value("\${host}")
+    @Value("\${mail_host}")
     val organisationEmail = ""
     val password = "dummyPass"
     val customerEmail = "customer@gmail.com"
