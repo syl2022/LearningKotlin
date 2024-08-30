@@ -10,9 +10,9 @@ import java.util.*
 @Service
 class EmailService(private var session: Session?, private var transport: Transport?) {
 
-    val organisationEmail = PropertiesReader.getProperty("mail_host")
-    val password = PropertiesReader.getProperty("mail_secrets")
-    val username = PropertiesReader.getProperty("mail_username")
+    val organisationEmail = PropertiesReader.getProperty("mail.host")
+    val password = PropertiesReader.getProperty("mail.secrets")
+    val username = PropertiesReader.getProperty("mail.username")
 
     fun sendOTPmail(email: String, name: String, otp: String): Boolean {
 

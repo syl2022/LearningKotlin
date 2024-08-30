@@ -5,8 +5,8 @@ import jakarta.mail.internet.InternetAddress
 import jakarta.mail.internet.MimeMessage
 import no.demo.learnkotlin.helper.PropertiesReader
 import no.demo.learnkotlin.services.EmailService
-import org.junit.Assert.assertTrue
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
@@ -25,7 +25,7 @@ class EmailServiceTest {
     @MockBean
     private lateinit var emailService: EmailService
 
-    val organisationEmail = PropertiesReader.getProperty("mail_host")
+    val organisationEmail = PropertiesReader.getProperty("mail.host")
     val password = "dummyPass"
     val customerEmail = "customer@gmail.com"
 
@@ -51,7 +51,7 @@ class EmailServiceTest {
     @Test
     fun `test email is created with correct details`() {
         val otp = "123456"
-        println(organisationEmail);
+        println(organisationEmail)
         emailService.sendOTPmail(customerEmail, "kotlinCustomer", otp)
 
         val messageCaptor = ArgumentCaptor.forClass(MimeMessage::class.java)

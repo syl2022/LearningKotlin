@@ -18,6 +18,7 @@ class SecurityConfiguration {
             .authorizeHttpRequests { auth ->
                 auth
                     .requestMatchers("/healthcheck").permitAll()
+                    .requestMatchers("/searchInFile").permitAll()
                     .requestMatchers("/user/login").permitAll()
                     .requestMatchers("/user/register").authenticated()
                     .anyRequest().authenticated()
